@@ -4,27 +4,125 @@
  * work well for content-centric websites.
  */
 
+@font-face {
+  font-family: 'Amazon Ember V2', sans-serif;
+  /*src: url("/static/fonts/OpenSans-Regular.ttf") format("truetype");*/
+}
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+  scroll-padding-top: var(--ifm-navbar-height);
+
+}
+
+.menu {
+  font-weight: var(--ifm-font-weight-normal);
+  font-size:  95%;
+  padding: 12px;
+}
+
+.heading {
+  font-weight: bold;
+}
+
+.tocList{
+  --ifm-list-item-margin: 0.5rem;
+  --ifm-heading-margin-top: 2rem;
+}
+
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #297278;
-  --ifm-color-primary-darker: #276c71;
-  --ifm-color-primary-darkest: #20595d;
-  --ifm-color-primary-light: #338c92;
-  --ifm-color-primary-lighter: #359299;
-  --ifm-color-primary-lightest: #3ca5ad;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-color-primary: #25c2a0; /* #146ee6; */
+  --ifm-menu-color: #525151;
+  --ifm-font-color-base: rgba(30, 32, 34, 1);
+  --ifm-navbar-background-color:  white;
+  --ifm-navbar-link-color: #333;
+  --ifm-navbar-height: 3.8rem;
+  --ifm-font-family-base: -apple-system,BlinkMacSystemFont,"Segoe UI Adjusted","Segoe UI","Liberation Sans",sans-serif;
+  --ifm-code-name-highlight: #84488D;
+  --ifm-font-size-base:  95%;
+  --ifm-heading-font-weight:  var(--ifm-font-weight-normal);
+  --ifm-toc-border-color: #dadde1b8;
+}
+
+.menu__link--sublist:after {
+  background: var(--ifm-menu-link-sublist-icon) 20% / 2rem 1.2rem;
+}
+
+.menu__caret:before {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 2rem 1.2rem;
+}
+
+.navbar--primary {
+  --ifm-navbar-background-color: white;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #2e7f85;
-  --ifm-color-primary-dark: #297278;
-  --ifm-color-primary-darker: #276c71;
-  --ifm-color-primary-darkest: #20595d;
-  --ifm-color-primary-light: #338c92;
-  --ifm-color-primary-lighter: #359299;
-  --ifm-color-primary-lightest: #3ca5ad;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+html[data-theme="dark"] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-menu-color: #e6e6e6;
+  --ifm-font-color-base: #e6e6e6;
+  --ifm-navbar-background-color: #141520;
+  --ifm-navbar-link-color: #aaa;
+  --ifm-code-name-highlight: #A972B1;
+  --ifm-toc-border-color: #333;
+  --ifm-background-color: #141520;
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    margin-left: 64px;
+  }
+
+  article {
+    margin-right: 48px;
+  }
+}
+
+@media screen and (min-width: 997px) {
+  .container {
+    margin-left: 32px;
+  }
+
+  article {
+    margin-right: 24px;
+  }
+}
+
+
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+html[data-theme="dark"] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.navbar__logo {
+  height: 3rem;
+}
+
+html[data-theme="light"] aside {
+  background: white;
+}
+
+p > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+html[data-theme="dark"] p > img {
+  background-color: rgb(255, 255, 255);
+}
+
+.navbar-brand
+{
+  font-size: 100px;
 }

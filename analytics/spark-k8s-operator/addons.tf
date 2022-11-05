@@ -226,7 +226,7 @@ module "eks_blueprints_kubernetes_addons" {
     repository = "https://aws.github.io/eks-charts"
     version    = "0.0.7"
     namespace  = "amazon-cloudwatch"
-    timeout    = "300"
+    timeout    = "180"
     values = [
       templatefile("${path.module}/helm-values/aws-cloudwatch-metrics-valyes.yaml", {
         eks_cluster_id = var.name
@@ -248,6 +248,11 @@ module "eks_blueprints_kubernetes_addons" {
       }
     ]
   }
+
+  #---------------------------------------------------------------
+  # Ingress Nginx
+  #---------------------------------------------------------------
+  enable_ingress_nginx = true
 
   tags = local.tags
 

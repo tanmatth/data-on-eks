@@ -9,4 +9,6 @@ locals {
     Blueprint  = local.name
     GithubRepo = "github.com/awslabs/data-on-eks"
   }
+
+  eks_oidc_issuer_url = replace(data.aws_eks_cluster.eks_cluster.identity[0].oidc[0].issuer, "https://", "")
 }

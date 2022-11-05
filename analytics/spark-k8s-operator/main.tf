@@ -55,7 +55,7 @@ module "eks_blueprints" {
       node_group_name = "core-node-grp"
       subnet_ids      = module.vpc.private_subnets
 
-      instance_types = ["m5.xlarge"]
+      instance_types = ["m5.2xlarge"]
       ami_type       = "AL2_x86_64"
       capacity_type  = "ON_DEMAND"
 
@@ -116,8 +116,8 @@ module "eks_blueprints" {
       disk_type = "gp3"
 
       max_size     = 9 # Managed node group soft limit is 450; request AWS for limit increase
-      min_size     = 3
-      desired_size = 3
+      min_size     = 1
+      desired_size = 1
 
       create_launch_template = true
       launch_template_os     = "amazonlinux2eks"

@@ -106,11 +106,11 @@ configuration: |
             - name: default
               resources:
                 guaranteed:
-                  memory: 100G
-                  vcore: 10
+                  memory: 200G
+                  vcore: 60
                 max:
-                  memory: 100G
-                  vcore: 10
+                  memory: 400G
+                  vcore: 80
             - name: prod
               resources:
                 guaranteed:

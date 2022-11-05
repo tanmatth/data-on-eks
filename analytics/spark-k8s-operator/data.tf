@@ -16,6 +16,10 @@ data "aws_secretsmanager_secret_version" "admin_password_version" {
   depends_on = [aws_secretsmanager_secret_version.grafana]
 }
 
+data "aws_eks_cluster" "eks_cluster" {
+  name = module.eks_blueprints.eks_cluster_id
+}
+
 #---------------------------------------------------------------
 # Example IAM policy for Spark job execution
 #---------------------------------------------------------------
@@ -66,6 +70,29 @@ data "aws_iam_policy_document" "fluent_bit" {
       "s3:GetObjectAcl",
       "s3:DeleteObject",
       "s3:DeleteObjectVersion"
+    ]
+  }
+}
+
+data "aws_iam_policy_document" "bpg" {
+  statement {
+    sid       = ""
+    effect    = "Allow"
+    resources = ["arn:${data.aws_partition.current.partition}:s3:::${aws_s3_bucket.this.id}"]
+
+    actions = [
+      "s3:ListBucket"
+    ]
+  }
+
+  statement {
+    sid       = ""
+    effect    = "Allow"
+    resources = ["arn:${data.aws_partition.current.partition}:s3:::${aws_s3_bucket.this.id}/*"]
+
+    actions = [
+      "s3:GetObject",
+      "s3:PutObject",
     ]
   }
 }

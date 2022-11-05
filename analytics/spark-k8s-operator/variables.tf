@@ -7,7 +7,7 @@ variable "name" {
 variable "region" {
   description = "region"
   type        = string
-  default     = "eu-west-1"
+  default     = "us-west-2"
 }
 
 variable "eks_cluster_version" {
@@ -17,7 +17,7 @@ variable "eks_cluster_version" {
 }
 
 variable "vpc_cidr" {
-  description = "VPC CIDR"
+  description = "VPC CIDR with 65,536 Ips"
   default     = "10.1.0.0/16"
   type        = string
 }
@@ -28,8 +28,15 @@ variable "public_subnets" {
   type        = list(string)
 }
 
+# You can also use "10.1.0.0/17"(32,768) and "10.1.64.0/18"(16382) with two AZs in two private subnets
 variable "private_subnets" {
   description = "Private Subnets CIDRs. 16382 IPs per Subnet"
   default     = ["10.1.0.0/18", "10.1.64.0/18", "10.1.128.0/18"]
+  type        = list(string)
+}
+
+variable "database_subnets" {
+  description = "Private Database Subnets CIDRs. 2046 IPs per Subnet"
+  default     = ["10.1.240.0/21", "10.1.248.0/21"]
   type        = list(string)
 }

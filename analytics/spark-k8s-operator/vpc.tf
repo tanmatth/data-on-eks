@@ -8,9 +8,13 @@ module "vpc" {
   name = local.name
   cidr = var.vpc_cidr
 
-  azs             = local.azs
-  public_subnets  = var.public_subnets  # Two Subnets. 4094 IPs per Subnet
-  private_subnets = var.private_subnets # Three Subnets. 16382 IPs per Subnet
+  azs              = local.azs
+  public_subnets   = var.public_subnets  # Two Subnets. 4094 IPs per Subnet
+  private_subnets  = var.private_subnets # Three Subnets. 16382 IPs per Subnet
+  database_subnets = var.database_subnets
+
+  create_database_subnet_group       = true
+  create_database_subnet_route_table = true
 
   enable_nat_gateway   = true
   single_nat_gateway   = true
