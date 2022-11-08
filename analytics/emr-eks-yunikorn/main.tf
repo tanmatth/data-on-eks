@@ -139,10 +139,8 @@ module "eks_blueprints" {
       additional_tags = {
         Name                                                             = "spark-driver-grp"
         subnet_type                                                      = "private"
-        "k8s.io/cluster-autoscaler/node-template/label/arch"             = "arm64"
         "k8s.io/cluster-autoscaler/node-template/label/kubernetes.io/os" = "linux"
         "k8s.io/cluster-autoscaler/node-template/label/noderole"         = "spark"
-        "k8s.io/cluster-autoscaler/node-template/label/disk"             = "nvme"
         "k8s.io/cluster-autoscaler/node-template/label/node-lifecycle"   = "on-demand"
         "k8s.io/cluster-autoscaler/experiments"                          = "owned"
         "k8s.io/cluster-autoscaler/enabled"                              = "true"
@@ -193,10 +191,8 @@ module "eks_blueprints" {
       additional_tags = {
         Name                                                             = "spark-exec-spot"
         subnet_type                                                      = "private"
-        "k8s.io/cluster-autoscaler/node-template/label/arch"             = "arm64"
         "k8s.io/cluster-autoscaler/node-template/label/kubernetes.io/os" = "linux"
         "k8s.io/cluster-autoscaler/node-template/label/noderole"         = "spark"
-        "k8s.io/cluster-autoscaler/node-template/label/disk"             = "nvme"
         "k8s.io/cluster-autoscaler/node-template/label/node-lifecycle"   = "spot"
         "k8s.io/cluster-autoscaler/experiments"                          = "owned"
         "k8s.io/cluster-autoscaler/enabled"                              = "true"

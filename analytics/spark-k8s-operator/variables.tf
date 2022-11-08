@@ -40,3 +40,15 @@ variable "database_subnets" {
   default     = ["10.1.240.0/21", "10.1.248.0/21"]
   type        = list(string)
 }
+
+variable "eks_cluster_domain" {
+  description = "Optional Route53 domain for the cluster."
+  type        = string
+  default     = ""
+}
+
+variable "acm_certificate_domain" {
+  description = "Optional Route53 certificate domain"
+  type        = string
+  default     = null
+}

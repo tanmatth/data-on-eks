@@ -1,3 +1,8 @@
+#!/bin/python3
+
+import gzip, base64
+
+bpg_config = """
 defaultSparkConf:
   spark.kubernetes.submission.connectionTimeout: 30000
   spark.kubernetes.submission.requestTimeout: 30000
@@ -130,3 +135,10 @@ logging:
   loggers:
     com.apple.spark: INFO
 sops: {}
+"""
+
+print(bpg_config, "\n")
+compressed_yaml: bytes = gzip.compress(bytes(bpg_config, 'utf-8'))
+
+binary_data = base64.b64encode(compressed_yaml).decode('utf-8')
+print(binary_data)

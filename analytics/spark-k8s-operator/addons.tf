@@ -253,6 +253,9 @@ module "eks_blueprints_kubernetes_addons" {
   # Ingress Nginx
   #---------------------------------------------------------------
   enable_ingress_nginx = true
+  ingress_nginx_helm_config = {
+    values = [templatefile("${path.module}/helm-values/nginx-values.yaml", {})]
+  }
 
   tags = local.tags
 
@@ -381,6 +384,18 @@ resource "kubernetes_cluster_role" "spark_role" {
   }
 
   rule {
+    verbs      = ["get", "list", "watch", "create", "delete", "deletecollection", "patch", "update"]
+    api_groups = ["sparkoperator.k8s.io"]
+    resources  = ["sparkapplications", "sparkapplications/status", "scheduledsparkapplications", "scheduledsparkapplications/status"]
+  }
+
+  rule {
+    verbs      = ["get"]
+    api_groups = ["apiextensions.k8s.io"]
+    resources  = ["customresourcedefinitions"]
+  }
+
+  rule {
     verbs      = ["get", "list", "watch"]
     api_groups = [""]
     resources  = ["namespaces", "nodes", "persistentvolumes"]
@@ -392,9 +407,9 @@ resource "kubernetes_cluster_role" "spark_role" {
     resources  = ["storageclasses"]
   }
   rule {
-    verbs      = ["get", "list", "watch", "describe", "create", "edit", "delete", "deletecollection", "annotate", "patch", "label"]
+    verbs      = ["get", "list", "watch", "describe", "create", "edit", "delete", "deletecollection", "annotate", "patch", "label", "update"]
     api_groups = [""]
-    resources  = ["serviceaccounts", "services", "configmaps", "events", "pods", "pods/log"]
+    resources  = ["serviceaccounts", "services", "configmaps", "events", "pods", "pods/log", "resourcequotas", "persistentvolumeclaims"]
   }
 
   rule {

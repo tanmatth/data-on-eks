@@ -90,6 +90,7 @@ if [[ $EMR_VIRTUAL_CLUSTER_ID != "" ]]; then
               "spark.executor.memory":"4g",
               "spark.local.dir" : "/data1,/data2",
               "spark.kubernetes.executor.podNamePrefix":"'"$JOB_NAME"'",
+
               "spark.ui.prometheus.enabled":"true",
               "spark.executor.processTreeMetrics.enabled":"true",
               "spark.kubernetes.driver.annotation.prometheus.io/scrape":"true",

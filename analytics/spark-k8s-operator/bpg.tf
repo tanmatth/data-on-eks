@@ -12,7 +12,7 @@ module "batch_processing_gateway" {
     namespace        = "bpg"
     create_namespace = false
     description      = "Argo workflows Helm chart deployment configuration"
-    timeout          = 300
+    timeout          = 240
   }
 
   addon_context = {

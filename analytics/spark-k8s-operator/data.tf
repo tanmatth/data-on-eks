@@ -2,6 +2,24 @@ data "aws_eks_cluster_auth" "this" {
   name = module.eks_blueprints.eks_cluster_id
 }
 
+data "aws_acm_certificate" "issued" {
+  count = var.acm_certificate_domain == null ? 0 : 1
+
+  domain   = var.acm_certificate_domain
+  statuses = ["ISSUED"]
+}
+
+data "aws_ami" "amazonlinux2eks" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["amazon-eks-node-${var.eks_cluster_version}-*"]
+  }
+
+  owners = ["amazon"]
+}
+
 data "aws_availability_zones" "available" {}
 
 data "aws_region" "current" {}
